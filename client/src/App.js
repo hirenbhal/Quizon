@@ -36,5 +36,4 @@ const Home = () => {
   );
 };
 
-
 export default App;
