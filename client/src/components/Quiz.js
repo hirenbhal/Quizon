@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 function Quiz() {
   const questions = [
     {
-      que: "who is ceo of tesla",
+      que: "Who is ceo of tesla",
       options: [
         { val: "Elon Musk", isCorrect: false },
         { val: "Ab", isCorrect: false },
