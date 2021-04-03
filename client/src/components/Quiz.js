@@ -7,37 +7,45 @@ function Quiz() {
       que: "who is ceo of tesla",
       options: [
         { val: "Elon Musk", isCorrect: false },
-        { val: "Ab", isCorrect: false },
-        { val: "Ac", isCorrect: false },
-        { val: "Ad", isCorrect: true },
+        { val: "Hiren Bhal", isCorrect: false },
+        { val: "Bill gates", isCorrect: false },
+        { val: "Motherfuck", isCorrect: true },
       ],
+      ans: "Motherfuck",
+      res: "",
     },
     {
-      que: "what is name of this",
+      que: "what is abhishek",
       options: [
-        { val: "Av", isCorrect: false },
-        { val: "Ab", isCorrect: true },
-        { val: "Ac", isCorrect: false },
-        { val: "Ad", isCorrect: false },
+        { val: "Gandu", isCorrect: false },
+        { val: "Chutiya", isCorrect: false },
+        { val: "Lodu", isCorrect: false },
+        { val: "1 se jyada baap ki aulad", isCorrect: true },
       ],
+      ans: "1 se jyada baap ki aulad",
+      res: "",
     },
     {
       que: "what is that",
       options: [
-        { val: "Av", isCorrect: false },
-        { val: "Ab", isCorrect: false },
-        { val: "Ac", isCorrect: true },
-        { val: "Ad", isCorrect: false },
+        { val: "Somethinh", isCorrect: false },
+        { val: "Not Somethinh", isCorrect: false },
+        { val: "New", isCorrect: true },
+        { val: "None of the above", isCorrect: false },
       ],
+      ans: "New",
+      res: "",
     },
     {
       que: "what is function",
       options: [
-        { val: "Av", isCorrect: true },
-        { val: "Ab", isCorrect: false },
-        { val: "Ac", isCorrect: false },
-        { val: "Ad", isCorrect: false },
+        { val: "Method", isCorrect: true },
+        { val: "Fuck off", isCorrect: false },
+        { val: "Dont know what to right", isCorrect: false },
+        { val: "Shut up", isCorrect: false },
       ],
+      ans: "Method",
+      res: "",
     },
   ];
 
@@ -61,8 +69,8 @@ function Quiz() {
     }, 1000);
   }, [countTimer]);
 
-  const HandleClick = (isCorrect) => {
-    if (isCorrect) {
+  const HandleClick = (clicked) => {
+    if (clicked[0]) {
       setScore(score + 1);
     }
 
@@ -75,13 +83,39 @@ function Quiz() {
     }
   };
 
+  const ScoreCard = () => {
+
+    return (
+      <div style={{ paddingBottom: "2rem" }}>
+        <div className="con1">
+          <div className="score">
+            <h3>Your Score</h3>
+            <h1>
+              {score} / {questions.length}
+            </h1>
+          </div>
+        </div>
+        {questions.map((item) => (
+          <div className="fuck">
+            <h4 style={{ marginBottom: "1rem", marginLeft: "5%" }}>
+              Question: {item.que}
+            </h4>
+            {item.options.map((op) => (
+              <>
+                { (item.ans == op.val) ? <div className="cor-ans">{op.val}</div> : <div className="end-ans">{op.val}</div> }
+              </>
+            ))}
+          </div>
+        ))}
+      </div>
+    );
+  };
+
   return (
     <div className="con">
       <div className="main-area">
         {completed ? (
-          <div style={{ marginTop: "5rem" }}>
-            <h1>Your score is {score}</h1>
-          </div>
+          <ScoreCard />
         ) : (
           <>
             <div className="timer-line">
@@ -97,10 +131,10 @@ function Quiz() {
             <div className="ans-section">
               {questions[index].options.map((item) => (
                 <button
-                  onClick={() => HandleClick(item.isCorrect)}
+                  onClick={() => HandleClick([item.isCorrect, item.val])}
                   className="btn click btn-lg btn-block"
                 >
-                  A <span style={{ paddingRight: "2rem" }}></span> {item.val}
+                  {item.val}
                 </button>
               ))}
             </div>
