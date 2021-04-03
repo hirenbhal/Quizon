@@ -59,6 +59,7 @@
   background-color: #f9f9f9;
   box-shadow: 3px 3px 10px darkgray;
   margin-bottom: 3rem;
+  border-radius: 100px;
 }
 
 .click:hover {
@@ -73,4 +74,35 @@
   .click {
     margin-bottom: 1.5rem;
   }
+}
+
+.score {
+  margin-top: 2rem;
+  background-color: #f9f9f9;
+  height: 10rem;
+  width: 15rem;
+  border-radius: 5%;
+  box-shadow: 3px 3px 10px darkgray;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.con1 {
+  margin-top: 5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.fuck {
+  margin-top: 2rem;
+  background-color: #f9f9f9;
+  min-height: 7rem;
+  box-shadow: 3px 3px 10px darkgray;
+  margin-left: 9%;
+  margin-right: 9%;
+  border-radius: 10px;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
 }
