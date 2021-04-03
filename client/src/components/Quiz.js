@@ -2,10 +2,25 @@ import "./Quiz.css";
 import { useState, useEffect } from "react";
 
 function Quiz() {
-  let [countTimer, setcountTimer] = useState(10);
-  const [index, setIndex] = useState(0);
-  const [score, setScore] = useState(0);
-  const [completed, setCompleted] = useState(false);
+  let intialIndex = Number(window.localStorage.getItem("index") || 0);
+  let intialScore = Number(window.localStorage.getItem("score") || 0);
+  let intialCompleted = Number(window.localStorage.getItem("completed") || 0);
+  let intialTime = Number(window.localStorage.getItem("countTimer") || 10);
+
+  const [completed, setCompleted] = useState(intialCompleted);
+  const [score, setScore] = useState(intialScore);
+  let [countTimer, setcountTimer] = useState(intialTime);
+  const [index, setIndex] = useState(intialIndex);
+  useEffect(() => {
+    window.localStorage.setItem("index", index);
+    window.localStorage.setItem("score", score);
+    window.localStorage.setItem("completed", completed);
+    window.localStorage.setItem("countTimer", countTimer);
+    return () => {
+      window.localStorage.clear();
+    };
+  }, [index, score, completed, countTimer]);
+
   const [questions, setQuestions] = useState([
     {
       que: "who is ceo of tesla",
@@ -13,9 +28,9 @@ function Quiz() {
         { val: "Elon Musk", isCorrect: false },
         { val: "Hiren Bhal", isCorrect: false },
         { val: "Bill gates", isCorrect: false },
-        { val: "Motherfuck", isCorrect: true },
+        { val: "Motherfucker", isCorrect: true },
       ],
-      ans: "Motherfuck",
+      ans: "Motherfucker",
       res: "No Response",
     },
     {
@@ -45,7 +60,7 @@ function Quiz() {
       options: [
         { val: "Method", isCorrect: true },
         { val: "Fuck off", isCorrect: false },
-        { val: "Dont know what to right", isCorrect: false },
+        { val: "Dont know what to write", isCorrect: false },
         { val: "Shut up", isCorrect: false },
       ],
       ans: "Method",
@@ -62,7 +77,7 @@ function Quiz() {
           setIndex(index + 1);
           setcountTimer(10);
         } else if (index == questions.length - 1) {
-          setCompleted(true);
+          setCompleted(completed + 1);
         }
       }
     }, 1000);
@@ -83,7 +98,7 @@ function Quiz() {
       countTimer = 10;
       setcountTimer((prev) => (prev = countTimer));
     } else if (index == questions.length - 1) {
-      setCompleted(true);
+      setCompleted(completed + 1);
     }
   };
 
@@ -118,7 +133,7 @@ function Quiz() {
   return (
     <div className="con">
       <div className="main-area">
-        {completed ? (
+        {completed >= 1 ? (
           <ScoreCard />
         ) : (
           <>

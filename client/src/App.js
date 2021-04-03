@@ -10,24 +10,26 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div>
-      <Navbar />
-      <Quiz />
-    </div>
-    // <Router>
-    //   <div>
-    //     <Navbar />
-    //     <Switch>
-    //       <Route path="/" exact component={Home} />
-    //       <Route path="/login" component={Login} />
-    //       <Route path="/register" component={Register} />
-    //     </Switch>
-    //   </div>
-    // </Router>
+    // <div>
+    //   <Navbar />
+    //   <Quiz />
+    // </div>
+    <Router>
+      <div>
+        <Navbar />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+          <Route path="/quiz" component={Quiz} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
 const Home = () => {
+  window.localStorage.clear();
   return (
     <div>
       <Feature />
