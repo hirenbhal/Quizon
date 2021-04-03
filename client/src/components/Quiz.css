@@ -98,34 +98,11 @@
 .fuck {
   margin-top: 2rem;
   background-color: #f9f9f9;
-  min-height: 10rem;
+  min-height: 7rem;
   box-shadow: 3px 3px 10px darkgray;
   margin-left: 9%;
   margin-right: 9%;
   border-radius: 10px;
   padding-bottom: 1rem;
   padding-top: 1rem;
-}
-
-.end-ans {
-  background-color: #c4c4c4;
-  display: flex;
-  justify-content: center;
-  padding: 0.5rem;
-  margin-left: 5%;
-  margin-right: 5%;
-  border-radius: 100px;
-  margin-bottom: 1rem;
-}
-
-.cor-ans {
-  background-color: #1cad09;
-  color: white;
-  display: flex;
-  justify-content: center;
-  padding: 0.5rem;
-  margin-left: 5%;
-  margin-right: 5%;
-  border-radius: 100px;
-  margin-bottom: 1rem;
 }

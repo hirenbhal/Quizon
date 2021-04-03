@@ -2,7 +2,11 @@ import "./Quiz.css";
 import { useState, useEffect } from "react";
 
 function Quiz() {
-  const questions = [
+  let [countTimer, setcountTimer] = useState(10);
+  const [index, setIndex] = useState(0);
+  const [score, setScore] = useState(0);
+  const [completed, setCompleted] = useState(false);
+  const [questions, setQuestions] = useState([
     {
       que: "who is ceo of tesla",
       options: [
@@ -12,7 +16,7 @@ function Quiz() {
         { val: "Motherfuck", isCorrect: true },
       ],
       ans: "Motherfuck",
-      res: "",
+      res: "No Response",
     },
     {
       que: "what is abhishek",
@@ -23,7 +27,7 @@ function Quiz() {
         { val: "1 se jyada baap ki aulad", isCorrect: true },
       ],
       ans: "1 se jyada baap ki aulad",
-      res: "",
+      res: "No Response",
     },
     {
       que: "what is that",
@@ -34,7 +38,7 @@ function Quiz() {
         { val: "None of the above", isCorrect: false },
       ],
       ans: "New",
-      res: "",
+      res: "No Response",
     },
     {
       que: "what is function",
@@ -45,14 +49,9 @@ function Quiz() {
         { val: "Shut up", isCorrect: false },
       ],
       ans: "Method",
-      res: "",
+      res: "No Response",
     },
-  ];
-
-  let [countTimer, setcountTimer] = useState(10);
-  const [index, setIndex] = useState(0);
-  const [score, setScore] = useState(0);
-  const [completed, setCompleted] = useState(false);
+  ]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -70,6 +69,11 @@ function Quiz() {
   }, [countTimer]);
 
   const HandleClick = (clicked) => {
+    setQuestions((prev) => {
+      prev[index].res = clicked[1];
+      return prev;
+    });
+
     if (clicked[0]) {
       setScore(score + 1);
     }
@@ -84,7 +88,6 @@ function Quiz() {
   };
 
   const ScoreCard = () => {
-
     return (
       <div style={{ paddingBottom: "2rem" }}>
         <div className="con1">
@@ -100,11 +103,12 @@ function Quiz() {
             <h4 style={{ marginBottom: "1rem", marginLeft: "5%" }}>
               Question: {item.que}
             </h4>
-            {item.options.map((op) => (
-              <>
-                { (item.ans == op.val) ? <div className="cor-ans">{op.val}</div> : <div className="end-ans">{op.val}</div> }
-              </>
-            ))}
+            <h5 style={{ marginBottom: "1rem", marginLeft: "5%" }}>
+              Correct Answer:{" " + item.ans}
+            </h5>
+            <h5 style={{ marginBottom: "1rem", marginLeft: "5%" }}>
+              Your Answer:{" " + item.res}
+            </h5>
           </div>
         ))}
       </div>
