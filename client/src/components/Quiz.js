@@ -7,9 +7,9 @@ function Quiz() {
   let intialCompleted = Number(window.localStorage.getItem("completed") || 0);
   let intialTime = Number(window.localStorage.getItem("countTimer") || 10);
 
+  let [countTimer, setcountTimer] = useState(intialTime);
   const [completed, setCompleted] = useState(intialCompleted);
   const [score, setScore] = useState(intialScore);
-  let [countTimer, setcountTimer] = useState(intialTime);
   const [index, setIndex] = useState(intialIndex);
   useEffect(() => {
     window.localStorage.setItem("index", index);
@@ -118,12 +118,12 @@ function Quiz() {
             <h4 style={{ marginBottom: "1rem", marginLeft: "5%" }}>
               Question: {item.que}
             </h4>
-            <h5 style={{ marginBottom: "1rem", marginLeft: "5%" }}>
-              Correct Answer:{" " + item.ans}
-            </h5>
-            <h5 style={{ marginBottom: "1rem", marginLeft: "5%" }}>
-              Your Answer:{" " + item.res}
-            </h5>
+            <div className="cor-ans">Correct Answer: {item.ans}</div>
+            {item.ans === item.res ? (
+              <div className="cor-ans">Your answer: {item.res}</div>
+            ) : (
+              <div className="incor-ans">Your answer: {item.res}</div>
+            )}
           </div>
         ))}
       </div>

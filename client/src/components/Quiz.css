@@ -106,3 +106,27 @@
   padding-bottom: 1rem;
   padding-top: 1rem;
 }
+
+.cor-ans {
+  display: flex;
+  margin-left: 5%;
+  margin-right: 5%;
+  background-color: green;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 100px;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.incor-ans {
+  display: flex;
+  margin-left: 5%;
+  margin-right: 5%;
+  background-color: red;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 100px;
+  justify-content: center;
+  margin-top: 1rem;
+}
